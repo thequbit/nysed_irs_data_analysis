@@ -1,3 +1,5 @@
+use nysed_irs;
+
 INSERT INTO eventtypes(eventtypename, withweapon, weaponrelated) VALUES("Homicide",1,1);
 INSERT INTO eventtypes(eventtypename, withweapon, weaponrelated) VALUES("Homicide",0,1);
 
