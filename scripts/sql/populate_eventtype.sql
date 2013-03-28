@@ -34,9 +34,9 @@ INSERT INTO eventtypes(eventtypename, weaponrelated) VALUES("False_Alarm",0);
 
 INSERT INTO eventtypes(eventtypename, weaponrelated) VALUES("Riot",1);
 
-INSERT INTO eventtypes(eventtypename, weaponrelated) VALUES("Weapon_Possession_Through_Screening",1);
+INSERT INTO eventtypes(eventtypename, weaponrelated) VALUES("Weapon_Possession_Through_Screening",0);
 
-INSERT INTO eventtypes(eventtypename, weaponrelated) VALUES("Weapon_Possession_Under_Other_Circumstances",1);
+INSERT INTO eventtypes(eventtypename, weaponrelated) VALUES("Weapon_Possession_Under_Other_Circumstances",0);
 
 INSERT INTO eventtypes(eventtypename, weaponrelated) VALUES("Use_Possession_or_Sale_of_Drugs",0);
 
