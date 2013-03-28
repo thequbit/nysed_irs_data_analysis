@@ -14,10 +14,10 @@ countyid int not null auto_increment primary key,
 countyname text not null
 );
 
-# create needresourcecatigories table
-create table needresourcecatigories(
-needresourcecatigoryid int not null auto_increment primary key,
-needresourcename text not null
+# create needresourcecategories table
+create table needresourcecategories(
+needresourcecategoryid int not null auto_increment primary key,
+needresourcecategoryname text not null
 );
 
 # create schooltypes table
@@ -31,7 +31,7 @@ gradeorganizationid int not null auto_increment primary key,
 gradeorganizationname text not null
 );
 
-# create districts table with foreign keys to previously created tables
+# create schools table with foreign keys to previously created tables
 create table schools(
 schoolid int not null auto_increment primary key,
 schoolname text not null,
@@ -43,8 +43,8 @@ districtid int not null,
 foreign key (districtid) references districts(districtid),
 gradeorganizationid int not null,
 foreign key (gradeorganizationid) references gradeorganizations(gradeorganizationid),
-needresourcecatigoryid int not null,
-foreign key (needresourcecatigoryid) references needresourcecatigories(needresourcecatigoryid),
+needresourcecategoryid int not null,
+foreign key (needresourcecategoryid) references needresourcecategories(needresourcecategoryid),
 schooltypeid int not null,
 foreign key (schooltypeid) references schooltypes(schooltypeid)
 );
@@ -62,6 +62,8 @@ create table events(
 eventid int not null auto_increment primary key,
 eventcount int not null,
 startingschoolyear int not null,
+eventtypeid int not null,
+foreign key (eventtypeid) references eventtypes(eventtypeid),
 schoolid int not null,
 foreign key (schoolid) references schools(schoolid)
 );
