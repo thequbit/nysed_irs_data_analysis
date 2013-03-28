@@ -2,19 +2,19 @@
 #create database nysed_irs;
 use nysed_irs;
 
+# create counties table
+create table counties(
+countyid int not null auto_increment primary key,
+countyname text not null,
+geometry text
+);
+
 # create districts table
 create table districts(
 districtid int not null auto_increment primary key,
 districtname text not null,
 countyid int not null,
 foreign key (countyid) references counties(countyid)
-);
-
-# create counties table
-create table counties(
-countyid int not null auto_increment primary key,
-countyname text not null,
-geometry text
 );
 
 # create needresourcecategories table
