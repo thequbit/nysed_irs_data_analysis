@@ -69,7 +69,7 @@ def add_gradeorganization(name):
 
         return ret
 
-def add_district(name):
+def add_district(name,countyid):
 
 	nysed = dbhelper()
 
@@ -77,7 +77,7 @@ def add_district(name):
 
         if exists == False:
 
-                nysed.create_district(name)
+                nysed.create_district(name,countyid)
 
                 #print "\tAdded District '{0}' Successfully.".format(name)
 
@@ -136,7 +136,7 @@ def main(argv):
 
 	for cells in lines:
 
-		if rowcount < 5:
+		if rowcount < 4:
 
 			print "Ignoring line row."
 
@@ -168,8 +168,8 @@ def main(argv):
 				enrollment = 0
 
 			# add all the new data to the database
-			countyid,_name= add_county(county)
-			districtid,_name = add_district(district)
+			countyid,_name,_geometry = add_county(county)
+			districtid,_name = add_district(district,countyid)
 			gradeorganizationid,_name = add_gradeorganization(gradeorg)
 			needresourcecategoryid,_name = add_needresourcecategory(resoucecat)
 			schooltypeid,_name = add_schooltype(schooltype)
