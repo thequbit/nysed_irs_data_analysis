@@ -1,17 +1,20 @@
-# create table, note: no permissions done here
-create table nysed_irs;
+# create database, note: no permissions done here
+#create database nysed_irs;
 use nysed_irs;
 
 # create districts table
 create table districts(
 districtid int not null auto_increment primary key,
-districtname text not null
+districtname text not null,
+countyid int not null,
+foreign key (countyid) references counties(countyid)
 );
 
 # create counties table
 create table counties(
 countyid int not null auto_increment primary key,
-countyname text not null
+countyname text not null,
+geometry text
 );
 
 # create needresourcecategories table
@@ -67,22 +70,3 @@ foreign key (eventtypeid) references eventtypes(eventtypeid),
 schoolid int not null,
 foreign key (schoolid) references schools(schoolid)
 );
-
-
-#
-# Above code should create the following tables:
-#
-#    mysql> show tables;
-#    +------------------------+
-#    | Tables_in_nysed_irs    |
-#    +------------------------+
-#    | counties               |
-#    | districts              |
-#    | gradeorganizations     |
-#    | needresourcecatigories |
-#    | schools                |
-#    | schooltypes            |
-#    +------------------------+
-#    6 rows in set (0.00 sec)
-#
-
