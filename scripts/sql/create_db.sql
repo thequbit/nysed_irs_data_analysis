@@ -52,6 +52,7 @@ foreign key (schooltypeid) references schooltypes(schooltypeid)
 # create eventtypes table
 create table eventtypes(
 eventtypeid int not null auto_increment primary key,
+eventtypename text not null,
 weaponrelated bool not null
 );
 
