@@ -28,7 +28,9 @@ INSERT INTO eventtypes(eventtypename, weaponrelated) VALUES("Criminal_Mischief",
 
 INSERT INTO eventtypes(eventtypename, weaponrelated) VALUES("Larceny_or_Other_Theft",1);
 
-INSERT INTO eventtypes(eventtypename, weaponrelated) VALUES("Bomb_Threat_False_Alarm",0);
+INSERT INTO eventtypes(eventtypename, weaponrelated) VALUES("Bomb_Threat",0);
+
+INSERT INTO eventtypes(eventtypename, weaponrelated) VALUES("False_Alarm",0);
 
 INSERT INTO eventtypes(eventtypename, weaponrelated) VALUES("Riot",1);
 
