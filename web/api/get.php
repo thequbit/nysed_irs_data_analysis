@@ -17,6 +17,9 @@
 	require_once("./tools/NeedResourceCategoryTool.class.php");
 	require_once("./tools/NeedResourceCategory.class.php");
 
+	require_once("./tools/SchoolTypeTool.class.php");
+	require_once("./tools/SchoolType.class.php");
+
 	// pull what we are getting from the POST
 	$what = $_GET['what'];
 
@@ -55,6 +58,12 @@
 			$type = "Need Resource Category";
 			$tool = new NeedResourceCategoryTool();
 			$result = $tool->GetAllNeedResourceCategories();
+			break;
+			
+		case "schooltype":
+			$type = "School Type";
+			$tool = new SchoolTypeTool();
+			$result = $tool->GetAllSchoolTypes();
 			break;
 			
 		case "":
