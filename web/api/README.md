@@ -182,8 +182,47 @@ json:
 		]
 	}
 
+**School**
+- what value: school
+- example: ./api/get.php?what=school
+- returns:
+	
+json:
 
-
+	{
+		"apiversion":"0.1",
+		"type":"School",
+		"errorcode":"0",
+		"errortext":"Successful.",
+		"results":
+		[
+			{
+				"schoolid":6081,
+				"schoolname":"Achievement Academy Charter School",
+				"bedscode":"010100860876",
+				"enrollment":252,
+				"county":"ALBANY",
+				"district":"",
+				"gradeorganization":"Middle School",
+				"needresourcecategory":"Charter School",
+				"schooltype":"Charter School"
+			},
+			{
+				"schoolid":6082,
+				"schoolname":"Albany Community Charter School",
+				"bedscode":"010100860899",
+				"enrollment":296,
+				"county":"ALBANY",
+				"district":"",
+				"gradeorganization":"Elementary",
+				"needresourcecategory":"Charter School",
+				"schooltype":"Charter School"
+			},
+			
+			... etc
+			
+		]
+	}
 
 	
 
