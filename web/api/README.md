@@ -20,6 +20,7 @@ Here is the available 'what' values:
 - example: ./api/get.php?what=county
 - example return:
 	
+	
 	{
 		"apiversion":"0.1",
 		"type":"Counties",
@@ -47,6 +48,7 @@ Here is the available 'what' values:
 - example: ./api/get.php?what=district
 - example return:
 	
+	
 	{
 		"apiversion":"0.1",
 		"type":"Districts",
@@ -71,6 +73,7 @@ Here is the available 'what' values:
 - what value: eventtype
 - example: ./api/get.php?what=eventtype
 - example return:
+	
 	
 	{
 		"apiversion":"0.1",
@@ -100,6 +103,7 @@ Here is the available 'what' values:
 - example: ./api/get.php?gradeorganization
 - example return:
 	
+	
 	{
 		"apiversion":"0.1",
 		"type":"Grade Organizations",
@@ -124,6 +128,7 @@ Here is the available 'what' values:
 - what value: needresourcecategory
 - example: ./api/get.php?gradeorganization
 - example return:
+	
 	
 	{
 		"apiversion":"0.1",
