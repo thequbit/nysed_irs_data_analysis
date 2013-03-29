@@ -4,6 +4,7 @@
 	{
 		public $districtid;
 		public $districtname;
+		public $countyid;
 	}
 
 ?>
