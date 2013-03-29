@@ -50,21 +50,6 @@ class get:
 
                 return retlist
 
-	def get_eventtypes(self):
-
-                results = self.__get_json__("eventtype")
-
-                retlist = []
-                for result in results:
-
-                        name = result["eventtypename"]
-                        _id = result["eventtypeid"]
-
-                        item = (_id,name)
-                        retlist.append(item)
-
-                return retlist
-
 	def get_gradeorganizations(self):
 
                 results = self.__get_json__("gradeorganization")
