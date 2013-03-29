@@ -18,8 +18,9 @@ Here is the available 'what' values:
 **County**
 - what value: county
 - example: ./api/get.php?what=county
-- example return:
-	
+- returns:
+
+json:
 	
 	{
 		"apiversion":"0.1",
@@ -46,8 +47,9 @@ Here is the available 'what' values:
 **District**
 - what value: district
 - example: ./api/get.php?what=district
-- example return:
-	
+- returns:
+
+json:
 	
 	{
 		"apiversion":"0.1",
@@ -72,8 +74,9 @@ Here is the available 'what' values:
 **Event Type**
 - what value: eventtype
 - example: ./api/get.php?what=eventtype
-- example return:
-	
+- returns:
+
+json:
 	
 	{
 		"apiversion":"0.1",
@@ -101,8 +104,9 @@ Here is the available 'what' values:
 **Grade Organization**
 - what value: gradeorganization
 - example: ./api/get.php?gradeorganization
-- example return:
-	
+- returns:
+
+json:
 	
 	{
 		"apiversion":"0.1",
@@ -127,9 +131,10 @@ Here is the available 'what' values:
 **Needs Resource Category**
 - what value: needresourcecategory
 - example: ./api/get.php?gradeorganization
-- example return:
+- returns:
 	
-	
+json:
+
 	{
 		"apiversion":"0.1",
 		"type":"Need Resource Category",
