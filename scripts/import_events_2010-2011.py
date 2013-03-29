@@ -6,8 +6,8 @@ from nysed_irs_db import dbhelper
 
 def main(argv):
 
-	if len(argv) != 2:
-		print "Usage:\n\t\t{0} <file.csv>".format(argv[0])
+	if len(argv) != 4:
+		print "Usage:\n\t\t{0} <file.csv> <startyear> <schoolyearname>".format(argv[0])
 		return
 
 	print "Application Start."
@@ -18,10 +18,16 @@ def main(argv):
 
 	db = dbhelper()
 
+	# create a new school year if it doesn't already exists, and then get the id for use later
+	startyear = argv[2]
+	schoolyearname = argv[3]
+	if db.check_schoolyear_exists(startyear) == False:
+		db.create_schoolyear(startyear,schoolyearname)
+	schoolyearid,_start,_name = db.get_schoolyear_by_startyear(startyear)
+
+
 	rowcount = 0
 	startcolumn = 8
-
-	schoolyear = 2010
 
 	for cells in lines:
 
@@ -63,20 +69,20 @@ def main(argv):
 						#print "\tSetting Value '{0}' for weapon involved event type '{1}'".format(cells[ccount],eventtypename)
 
 						# add with the weapon 
-						db.create_event(cells[ccount], schoolyear, 1, eventtypeid, schoolid)
+						db.create_event(cells[ccount], schoolyearid, 1, eventtypeid, schoolid)
 						# inc to next cell
 						ccount += 1
 
 						#print "\tSetting Value '{0}' for no weapon involved event type '{1}'".format(cells[ccount],eventtypename)
 
 						# add without the weapon
-						db.create_event(cells[ccount], schoolyear, 0, eventtypeid, schoolid)
+						db.create_event(cells[ccount], schoolyearid, 0, eventtypeid, schoolid)
 					else:
 
 						#print "\tSetting Value '{0}' for weapon-independant event type '{1}'".format(cells[ccount],eventtypename)
 
 						# add just without the weapon
-						db.create_event(cells[ccount], schoolyear, 0, eventtypeid, schoolid)
+						db.create_event(cells[ccount], schoolyearid, 0, eventtypeid, schoolid)
 
 					# inc to next cell
 					ccount += 1

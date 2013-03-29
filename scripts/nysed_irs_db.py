@@ -42,11 +42,11 @@ class dbhelper:
 			cur.execute("INSERT INTO counties(countyname) VALUES(%s)", countyname)
 			cur.close()
 
-	def create_district(self, districtname):
+	def create_district(self, districtname, countyid):
 
                 with self.__con:
                         cur = self.__con.cursor()
-                        cur.execute("INSERT INTO districts(districtname) VALUES(%s)", districtname)
+                        cur.execute("INSERT INTO districts(districtname,countyid) VALUES(%s,%s)", (districtname, countyid))
 			cur.close()
 
 	def create_gradeorganization(self, gradeorganizationname):
@@ -72,6 +72,14 @@ class dbhelper:
 		        cur.close()
                 
 
+	def create_schoolyear(self, schoolyearstart, schoolyearname):
+
+		with self.__con:
+                        cur = self.__con.cursor()
+                        cur.execute("INSERT INTO schoolyears(schoolyearstart,schoolyearname) VALUES(%s,%s)", (schoolyearstart,schoolyearname))
+                        cur.close()
+
+
 	def create_school(self, schoolname, bedscode, enrollment, countyid, districtid, gradeorganizationid, needresourcecategoryid, schooltypeid):
 
                 with self.__con:
@@ -79,17 +87,20 @@ class dbhelper:
                         cur.execute("INSERT INTO schools(schoolname, bedscode, enrollment, countyid, districtid, gradeorganizationid, needresourcecategoryid, schooltypeid) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)", (schoolname, bedscode, enrollment, countyid, districtid, gradeorganizationid, needresourcecategoryid, schooltypeid))
 		        cur.close()
                 
-
-
-	def create_eventtype(self, eventtypename, withweapon, weaponrelated):
+	def create_eventtype(self, eventtypename, weaponrelated):
 
                 with self.__con:
                         cur = self.__con.cursor()
-                        cur.execute("INSERT INTO eventtypes(eventtypename,withweapon,weaponrelated) VALUES(%s,%s,%s)", (eventtypename,int(withweapon),int(weaponrelated)))
+                        cur.execute("INSERT INTO eventtypes(eventtypename,weaponrelated) VALUES(%s,%s)", (eventtypename,weaponrelated))
 		        cur.close()
                 
 	
+	def create_event(self, eventcount, schoolyearid, withweapon, eventtypeid, schoolid):
 
+		with self.__con:
+                        cur = self.__con.cursor()
+                        cur.execute("INSERT INTO events(eventcount,schoolyearid,withweapon,eventtypeid,schoolid) VALUES(%s,%s,%s,%s,%s)", (eventcount,schoolyearid,withweapon,eventtypeid,schoolid) )
+                        cur.close()
 
 
 
@@ -165,6 +176,20 @@ class dbhelper:
                 
                 return exists
 
+
+	def check_schoolyear_exists(self, schoolyearstart):
+
+		with self.__con:
+                        cur = self.__con.cursor()
+                        cur.execute("SELECT schoolyearid FROM schoolyears WHERE schoolyearstart = %s", schoolyearstart.lower())
+                        if len(cur.fetchall()) == 0:
+                                exists = False
+                        else:
+                                exists = True
+                        cur.close()
+
+                return exists
+
 	
 	def check_school_exists(self, schoolname, bedscode):
 
@@ -192,7 +217,20 @@ class dbhelper:
                 
                 return exists
 
+
+	##################################
+	#
+	# Update Functions
+	#
+	#
 	
+	def update_county_geometry(self,countyid,geometry):
+
+		with self.__con:
+                        cur = self.__con.cursor()
+                        cur.execute("UPDATE counties SET geometry = %s WHERE countyid = %s", (geometry, countyid) )
+                        cur.close()
+
 
 	###################################
 	#
@@ -204,12 +242,26 @@ class dbhelper:
 
                 with self.__con:
                         cur = self.__con.cursor()
-                        cur.execute("SELECT countyid,countyname FROM counties WHERE LOWER(countyname) = %s", countyname.lower())
+                        cur.execute("SELECT countyid,countyname,geometry FROM counties WHERE LOWER(countyname) = %s", countyname.lower())
 			row = cur.fetchone()
 		        cur.close()
                 
-		countyid,countyname = row
-		return (countyid, countyname)
+		countyid,countyname,geometry = row
+		return (countyid, countyname, geometry)
+
+	def get_all_counties(self):
+
+		with self.__con:
+                        cur = self.__con.cursor()
+                        cur.execute("SELECT countyid,countyname,geometry FROM counties")
+                        rows = cur.fetchall()
+                        cur.close()
+
+		counties = []
+		for row in rows:
+			counties.append(row)
+
+                return counties
 
 	def get_district_by_name(self, districtname):
 
@@ -222,16 +274,31 @@ class dbhelper:
                 districtid,districtname = row
                 return (districtid, districtname)
 
+	def get_all_eventtypes(self):
+
+		with self.__con:
+                        cur = self.__con.cursor()
+                        cur.execute("SELECT eventtypeid,eventtypename,weaponrelated FROM eventtypes ORDER BY eventtypeid") # this assumes they were loaced into the database they way they show up in the spreadsheet
+                        rows = cur.fetchall()
+                        cur.close()
+
+		eventtypes = []
+		for row in rows:
+			eventtypes.append(row)
+
+                return eventtypes
+
+
 	def get_eventtype_by_name(self, eventtypename):
 
                 with self.__con:
                         cur = self.__con.cursor()
-                        cur.execute("SELECT eventtypeid,eventtypename FROM eventtypes WHERE LOWER(eventtypename) = %s", eventtypename.lower())
+                        cur.execute("SELECT eventtypeid,eventtypename,weaponsrelated FROM eventtypes WHERE LOWER(eventtypename) = %s", eventtypename.lower())
                         row = cur.fetchone()
 		        cur.close()
                 
-		eventtypeid,eventtypename = row
-                return (eventtypeid, eventtypename)
+		eventtypeid,eventtypename,weaponsrelated = row
+                return (eventtypeid, eventtypename, weaponsrelated)
 
 	def get_gradeorganization_by_name(self, gradeorganizationname):
 
@@ -254,6 +321,29 @@ class dbhelper:
                 
                 needresourcecategoryid,needresourcecategoryname = row
                 return (needresourcecategoryid, needresourcecategoryname)
+
+	def get_schoolyear_by_startyear(self, schoolyearstart):
+
+                with self.__con:
+                        cur = self.__con.cursor()
+                        cur.execute("SELECT schoolyearid,schoolyearstart,schoolyearname FROM schoolyears WHERE schoolyearstart = %s", schoolyearstart )
+                        row = cur.fetchone()
+                        cur.close()
+
+                schoolyearid,schoolyearstart,schoolyearname = row
+                return (schoolyearid, schoolyearstart, schoolyearname)
+
+
+	def get_schoolyear_by_name(self, schoolyearname):
+
+		with self.__con:
+                        cur = self.__con.cursor()
+                        cur.execute("SELECT schoolyearid,schoolyearstart,schoolyearname FROM schoolyears WHERE LOWER(schoolyearname) = %s", schoolyearname.lower())
+                        row = cur.fetchone()
+                        cur.close()
+
+		schoolyearid,schoolyearstart,schoolyearname = row
+                return (schoolyearid, schoolyearstart, schoolyearname)
 
 	def get_schooltype_by_name(self, schooltypename):
 
