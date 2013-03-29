@@ -121,7 +121,23 @@ class get:
                         name = result["eventtypename"]
                         _id = result["eventtypeid"]
 
-                        item = (_id,name)
+                        item = (_id,name,weaponrelated)
+                        retlist.append(item)
+
+                return retlist
+
+	def get_schoolyears(self):
+
+                results = self.__get_json__("schoolyear")
+
+                retlist = []
+                for result in results:
+
+                        startyear = result["schoolyearstart"]
+                        name = result["schoolyearname"]
+                        _id = result["schoolyearid"]
+
+                        item = (_id,startyear,name)
                         retlist.append(item)
 
                 return retlist
