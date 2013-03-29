@@ -103,7 +103,7 @@ json:
 	
 **Grade Organization**
 - what value: gradeorganization
-- example: ./api/get.php?gradeorganization
+- example: ./api/get.php?what=gradeorganization
 - returns:
 
 json:
@@ -130,7 +130,7 @@ json:
 	
 **Needs Resource Category**
 - what value: needresourcecategory
-- example: ./api/get.php?gradeorganization
+- example: ./api/get.php?what=needresourcecategory
 - returns:
 	
 json:
@@ -157,6 +157,34 @@ json:
 	
 	}
 
+**School Type**
+- what value: schooltype
+- example: ./api/get.php?what=schooltype
+- returns:
+	
+json:
 
+	{
+		"apiversion":"0.1",
+		"type":"School Type",
+		"errorcode":"0",
+		"errortext":"Successful.",
+		"results":
+		[
+			{
+				"schooltypeid":3,
+				"schooltypename":"Charter School"
+			},
+			{
+				"schooltypeid":4,
+				"schooltypename":"Public"
+			}
+		]
+	}
+
+
+
+
+	
 
 	
