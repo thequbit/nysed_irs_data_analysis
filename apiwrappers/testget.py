@@ -24,3 +24,15 @@ print "\t{0} grade organizations returned.".format(len(grades))
 print "\t{0} event types returned.".format(len(eventtypes))
 
 print "\nExecuted in {0} seconds.\n".format(end - start)
+
+print "\nAttempting to pull down all schools ..."
+
+schoolsstart = time.time()
+
+schools = api.get_schools()
+
+print "\t{0} schools returned.".format(len(schools))
+
+schoolsend = time.time()
+
+print "\nExecuted in {0} seconds.\n".format(schoolsend - schoolsstart)

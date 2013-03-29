@@ -41,10 +41,11 @@ class get:
 		retlist = []
                 for result in results:
 
-                        name = result["districtname"]
+                        countyid = result["countyid"]
+			name = result["districtname"]
                         _id = result["districtid"]
 
-                        item = (_id,name)
+                        item = (_id,name,countyid)
                         retlist.append(item)
 
                 return retlist
@@ -121,6 +122,28 @@ class get:
                         _id = result["eventtypeid"]
 
                         item = (_id,name)
+                        retlist.append(item)
+
+                return retlist
+
+	def get_schools(self):
+
+                results = self.__get_json__("school")
+
+                retlist = []
+                for result in results:
+
+                        schoolid = result["schoolid"]
+			schoolname = result["schoolname"]
+			bedscode = result["bedscode"]
+			enrollment = result["enrollment"]
+			county = result["county"]
+			district = result["district"]
+			gradeorganization = result["gradeorganization"]
+			needresourcecategory = result["needresourcecategory"]
+			schooltype = result["schooltype"]
+
+                        item = (schoolid,schoolname,bedscode,enrollment,county,district,gradeorganization,needresourcecategory,schooltype)
                         retlist.append(item)
 
                 return retlist
