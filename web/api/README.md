@@ -6,8 +6,8 @@ nysed_irs_data_analysis
 This is the simplest of the API's that allows for a simple query of what exists within various tables within the database.  The API returns an apiversion, type, errorcode, errortext, and results secontion in the JSON object reguardless of success.  Decode the errorcode field to deturmine success.
 
 **errorcode decode:**
-	0 - successful
-	1 - invalid input, not successful
+- 0: successful
+- 1: invalid input, not successful
 
 Note: there is some semi-useful text returned in the errortext field to help you decode what happened as well.
 
@@ -16,9 +16,9 @@ The API is used with a single propery passed in via the URL called 'what'.  Plea
 Here is the available 'what' values:
 
 **County**
-	what value: county
-	example: ./api/get.php?what=county
-	example return:
+- what value: county
+- example: ./api/get.php?what=county
+- example return:
 	
 	{
 		"apiversion":"0.1",
@@ -43,9 +43,9 @@ Here is the available 'what' values:
 	}
 	
 **District**
-	what value: district
-	example: ./api/get.php?what=district
-	example return:
+- what value: district
+- example: ./api/get.php?what=district
+- example return:
 	
 	{
 		"apiversion":"0.1",
@@ -68,9 +68,9 @@ Here is the available 'what' values:
 	}
 	
 **Event Type**
-	what value: eventtype
-	example: ./api/get.php?what=eventtype
-	example return:
+- what value: eventtype
+- example: ./api/get.php?what=eventtype
+- example return:
 	
 	{
 		"apiversion":"0.1",
@@ -96,9 +96,9 @@ Here is the available 'what' values:
 	}
 	
 **Grade Organization**
-	what value: gradeorganization
-	example: ./api/get.php?gradeorganization
-	example return:
+- what value: gradeorganization
+- example: ./api/get.php?gradeorganization
+- example return:
 	
 	{
 		"apiversion":"0.1",
@@ -121,9 +121,9 @@ Here is the available 'what' values:
 	}
 	
 **Needs Resource Category**
-	what value: needresourcecategory
-	example: ./api/get.php?gradeorganization
-	example return:
+- what value: needresourcecategory
+- example: ./api/get.php?gradeorganization
+- example return:
 	
 	{
 		"apiversion":"0.1",
