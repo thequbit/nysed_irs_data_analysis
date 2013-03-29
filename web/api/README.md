@@ -1,11 +1,11 @@
 nysed_irs_data_analysis
 =======================
 
-./api/get.php?what=<item_type>
+**./api/get.php?what=value**
 
 This is the simplest of the API's that allows for a simple query of what exists within various tables within the database.  The API returns an apiversion, type, errorcode, errortext, and results secontion in the JSON object reguardless of success.  Decode the errorcode field to deturmine success.
 
-errorcode decode:
+**errorcode decode:**
 	0 - successful
 	1 - invalid input, not successful
 
@@ -15,7 +15,7 @@ The API is used with a single propery passed in via the URL called 'what'.  Plea
 
 Here is the available 'what' values:
 
-County:
+**County**
 	what value: county
 	example: ./api/get.php?what=county
 	example return:
@@ -42,7 +42,7 @@ County:
 		]
 	}
 	
-District:
+**District**
 	what value: district
 	example: ./api/get.php?what=district
 	example return:
@@ -67,7 +67,7 @@ District:
 		]
 	}
 	
-Event Type:
+**Event Type**
 	what value: eventtype
 	example: ./api/get.php?what=eventtype
 	example return:
@@ -95,7 +95,7 @@ Event Type:
 		]
 	}
 	
-Grade Organization:
+**Grade Organization**
 	what value: gradeorganization
 	example: ./api/get.php?gradeorganization
 	example return:
@@ -120,7 +120,7 @@ Grade Organization:
 		]
 	}
 	
-Needs Resource Category:
+**Needs Resource Category**
 	what value: needresourcecategory
 	example: ./api/get.php?gradeorganization
 	example return:
