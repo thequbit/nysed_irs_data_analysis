@@ -20,6 +20,9 @@
 	require_once("./tools/SchoolTypeTool.class.php");
 	require_once("./tools/SchoolType.class.php");
 
+	require_once("./tools/SchoolTool.class.php");
+	require_once("./tools/SchoolHybrid.class.php");
+
 	// pull what we are getting from the POST
 	$what = $_GET['what'];
 
@@ -64,6 +67,12 @@
 			$type = "School Type";
 			$tool = new SchoolTypeTool();
 			$result = $tool->GetAllSchoolTypes();
+			break;
+			
+		case "school":
+			$type = "School";
+			$tool = new SchoolTool();
+			$result = $tool->GetAllHybridSchools();
 			break;
 			
 		case "":

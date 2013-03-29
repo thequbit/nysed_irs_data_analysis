@@ -25,6 +25,7 @@
 					
 					$district->districtid 	= $row['districtid'];
 					$district->districtname = $row['districtname'];
+					$district->countyid = $row['countyid'];
 				
 					$districts[] = $district;
 				}
