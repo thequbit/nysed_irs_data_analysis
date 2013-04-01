@@ -10,17 +10,17 @@ The get library is pretty simple.  It allows you to get data from the database t
 
 **Event Types**
 - eg: Robery, Arson, Drug Possession, etc.
-- api call: get_eventtypes()
+- api call: get_incidenttypes()
 
 code:
 
 	from getapi import get
 	
 	api = get()
-	eventtypes = api.get_eventtypes()
+	incidenttypes = api.get_incidenttypes()
 	
-	for eventtype in eventtypes:
-        eventid,eventname,weaponrelated = eventtype
+	for incidenttype in incidenttypes:
+        incidentid,incidentname,weaponrelated = incidenttype
 
 
 **School Types**

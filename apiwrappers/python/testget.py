@@ -12,7 +12,7 @@ districts = api.get_districts()
 schooltypes = api.get_schooltypes()
 needs = api.get_needresourcecategories()
 grades = api.get_gradeorganizations()
-eventtypes = api.get_eventtypes()
+incidenttypes = api.get_incidenttypes()
 
 end = time.time()
 
@@ -21,7 +21,7 @@ print "\t{0} districts returned.".format(len(districts))
 print "\t{0} school types returned.".format(len(schooltypes))
 print "\t{0} need resource categories returned.".format(len(needs))
 print "\t{0} grade organizations returned.".format(len(grades))
-print "\t{0} event types returned.".format(len(eventtypes))
+print "\t{0} incident types returned.".format(len(incidenttypes))
 
 print "\nExecuted in {0} seconds.\n".format(end - start)
 

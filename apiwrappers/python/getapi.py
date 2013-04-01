@@ -95,16 +95,16 @@ class get:
 
                 return retlist
 
-	def get_eventtypes(self):
+	def get_incidenttypes(self):
 
-                results = self.__get_json__("eventtype")
+                results = self.__get_json__("incidenttype")
 
                 retlist = []
                 for result in results:
 
 			weaponrelated = result["weaponrelated"]
-                        name = result["eventtypename"]
-                        _id = result["eventtypeid"]
+                        name = result["incidenttypename"]
+                        _id = result["incidenttypeid"]
 
                         item = (_id,name,weaponrelated)
                         retlist.append(item)

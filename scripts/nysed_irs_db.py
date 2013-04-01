@@ -87,19 +87,23 @@ class dbhelper:
                         cur.execute("INSERT INTO schools(schoolname, bedscode, enrollment, countyid, districtid, gradeorganizationid, needresourcecategoryid, schooltypeid) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)", (schoolname, bedscode, enrollment, countyid, districtid, gradeorganizationid, needresourcecategoryid, schooltypeid))
 		        cur.close()
                 
-	def create_eventtype(self, eventtypename, weaponrelated):
+	def create_incidenttype(self, incidenttypename, weaponrelated):
 
                 with self.__con:
                         cur = self.__con.cursor()
-                        cur.execute("INSERT INTO eventtypes(eventtypename,weaponrelated) VALUES(%s,%s)", (eventtypename,weaponrelated))
+                        cur.execute("INSERT INTO incidenttypes(incidenttypename,weaponrelated) VALUES(%s,%s)", (incidenttypename,weaponrelated))
 		        cur.close()
                 
 	
-	def create_event(self, eventcount, schoolyearid, withweapon, eventtypeid, schoolid):
+	def create_incident(self, incidentcount, schoolyearid, withweapon, incidenttypeid, schoolid):
+
+		# sanitize inputs
+		if incidentcount == "":
+			incidentcount = 0
 
 		with self.__con:
                         cur = self.__con.cursor()
-                        cur.execute("INSERT INTO events(eventcount,schoolyearid,withweapon,eventtypeid,schoolid) VALUES(%s,%s,%s,%s,%s)", (eventcount,schoolyearid,withweapon,eventtypeid,schoolid) )
+                        cur.execute("INSERT INTO vadirincidents(incidentcount,schoolyearid,withweapon,incidenttypeid,schoolid) VALUES(%s,%s,%s,%s,%s)", (incidentcount,schoolyearid,withweapon,incidenttypeid,schoolid) )
                         cur.close()
 
 
@@ -204,11 +208,11 @@ class dbhelper:
                 
                 return exists
 
-	def check_eventtype_exists(self, eventtypename):
+	def check_incidenttype_exists(self, incidenttypename):
 
                 with self.__con:
                         cur = self.__con.cursor()
-                        cur.execute("SELECT eventtypeid FROM eventtypes WHERE LOWER(eventtypename) = %s", eventtypename.lower())
+                        cur.execute("SELECT incidenttypeid FROM incidenttypes WHERE LOWER(incidenttypename) = %s", incidenttypename.lower())
                         if len(cur.fetchall()) == 0:
                                 exists = False
                         else:
@@ -267,38 +271,41 @@ class dbhelper:
 
                 with self.__con:
                         cur = self.__con.cursor()
-                        cur.execute("SELECT districtid,districtname FROM districts WHERE LOWER(districtname) = %s", districtname.lower())
+                        cur.execute("SELECT districtid,districtname,countyid FROM districts WHERE LOWER(districtname) = %s", districtname.lower())
                         row = cur.fetchone()
 		        cur.close()
-                
-                districtid,districtname = row
-                return (districtid, districtname)
+               
+		if row == None:
+			print "OMG WTF"
+ 
+                districtid,districtname,countyid = row
+                return (districtid, districtname, countyid)
 
-	def get_all_eventtypes(self):
+	def get_all_incidenttypes(self):
 
 		with self.__con:
                         cur = self.__con.cursor()
-                        cur.execute("SELECT eventtypeid,eventtypename,weaponrelated FROM eventtypes ORDER BY eventtypeid") # this assumes they were loaced into the database they way they show up in the spreadsheet
+                        cur.execute("SELECT incidenttypeid,incidenttypename,weaponrelated FROM incidenttypes ORDER BY incidenttypeid") # this assumes they were loaded into the database the way they show up in the spreadsheet
                         rows = cur.fetchall()
                         cur.close()
 
-		eventtypes = []
+		incidenttypes = []
 		for row in rows:
-			eventtypes.append(row)
+			incidenttypes.append(row)
 
-                return eventtypes
+                return incidenttypes
 
 
-	def get_eventtype_by_name(self, eventtypename):
+	def get_incidenttype_by_name(self, incidenttypename):
 
                 with self.__con:
                         cur = self.__con.cursor()
-                        cur.execute("SELECT eventtypeid,eventtypename,weaponsrelated FROM eventtypes WHERE LOWER(eventtypename) = %s", eventtypename.lower())
+                        cur.execute("SELECT incidenttypeid,incidenttypename,weaponsrelated FROM incidenttypes WHERE LOWER(incidenttypename) = %s", incidenttypename.lower())
                         row = cur.fetchone()
 		        cur.close()
                 
-		eventtypeid,eventtypename,weaponsrelated = row
-                return (eventtypeid, eventtypename, weaponsrelated)
+		incidenttypeidincndenttypename,weaponsrelated = row
+                return (incidenttypeid, incndenttypename, weaponsrelated)
 
 	def get_gradeorganization_by_name(self, gradeorganizationname):
 
