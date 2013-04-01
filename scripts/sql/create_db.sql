@@ -1,5 +1,10 @@
 # create database, note: no permissions done here
-#create database nysed_irs;
+create database nysed_irs;
+
+# permissions
+grant usage on nysed_irs.* to nysed identified by ‘password123%%%’;
+grant all privileges on nysed_irs.* to nysed;
+
 use nysed_irs;
 
 # create counties table
@@ -53,7 +58,7 @@ foreign key (schooltypeid) references schooltypes(schooltypeid)
 );
 
 # create incidenttype table
-create table incidenttype(
+create table incidenttypes(
 incidenttypeid int not null auto_increment primary key,
 incidenttypename text not null,
 weaponrelated bool not null
