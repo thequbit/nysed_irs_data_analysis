@@ -1,0 +1,155 @@
+/* reset the browser */
+*
+{
+	margin:0;
+	padding:0;
+}
+
+body {
+	background-image:url('/media/shattered.png');
+	background-repeat:repeat-y repeat-x;
+	background-color: #fafafa;
+	font: 12px sans-serif;
+}
+
+/*
+ * Wrapper Style
+ */
+
+div.top{
+	margin-top: 15px;
+}
+/*
+div.top {
+	margin: auto;
+}
+*/
+div.headerwrapper {
+	margin: auto;
+	width: 1100px;
+	background-color: #090909;
+	border-radius:3px;
+}
+
+div.header {
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 45px;
+	padding: 8px;
+	text-align:center;
+	font-size: 24px;
+	font-family: 'Averia Gruesa Libre', cursive;
+	color: #E0E0E0
+}
+
+/*
+ * Nav Style
+ */
+
+div.navwrapper{
+	width: 1100px;
+	height: 27px;
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	/*border-style:solid;
+	border-width:1px;*/
+}
+
+div.nav {
+	margin-left: 10px;
+	margin-right: 10px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	background-color: #707070;
+	font-size: 16px;
+	text-align: left;
+}
+
+#home{
+	/*border-left: 1px solid #fff;*/
+}
+
+#nav li:first-child{
+	border-right: 1px solid #fff;
+}
+
+#nav li{
+	display: inline;
+	padding: 0 20px;
+	border-right: 1px solid #fff;
+}
+
+#nav li:last-child{
+	border: none;
+}
+
+#nav a{
+	color: #fff;
+	text-decoration:none;
+}
+
+
+
+/*
+ * Content Style
+ */
+
+div.contentwrapper {
+	border-style:solid;
+	border-width:1px;
+	background-color: white;
+	width: 1100px;
+	margin: auto;
+}
+
+div.content {
+	margin-top: 40px;
+	margin-bottom: 40px;
+	margin-left: 80px;
+	margin-right: 80px;
+}
+
+div.footerwrapper {
+	margin: auto;
+	text-align:center;
+}
+
+div.footer {
+	
+	margin-top: 8px;
+}
+
+/*
+ * Formating Style
+ */
+ 
+div.miniheader
+{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	font-weight:bold;
+	font-size: 16px;
+}
+ 
+div.tab
+{
+	margin-left: 40px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+div.tab2
+{
+	margin-left: 80px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+div.centerbox
+{
+	margin: auto;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
