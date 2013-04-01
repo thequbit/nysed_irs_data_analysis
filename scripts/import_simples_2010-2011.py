@@ -169,7 +169,7 @@ def main(argv):
 
 			# add all the new data to the database
 			countyid,_name,_geometry = add_county(county)
-			districtid,_name = add_district(district,countyid)
+			districtid,_name,_countyid = add_district(district,countyid)
 			gradeorganizationid,_name = add_gradeorganization(gradeorg)
 			needresourcecategoryid,_name = add_needresourcecategory(resoucecat)
 			schooltypeid,_name = add_schooltype(schooltype)
