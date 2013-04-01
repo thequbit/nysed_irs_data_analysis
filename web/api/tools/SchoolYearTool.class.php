@@ -25,7 +25,7 @@
 					$schoolyear = new SchoolYear();
 					
 					$schoolyear->schoolyearid 	= $row['schoolyearid'];
-					$schoolyear->schoolyearname = $row['schoolyearstart'];
+					$schoolyear->schoolyearstart = $row['schoolyearstart'];
 					$schoolyear->schoolyearname = $row['schoolyearname'];
 				
 					$schoolyears[] = $schoolyear;

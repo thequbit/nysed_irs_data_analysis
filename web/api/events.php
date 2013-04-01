@@ -1,5 +1,7 @@
 <?php
 
+	$apiversion = "0.1";
+
 	require_once("./tools/EventTool.class.php");
 	
 	$action = $_GET["action"];
