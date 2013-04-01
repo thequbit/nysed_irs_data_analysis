@@ -43,12 +43,13 @@
 		<div class="navwrapper">
 		
 			<div class="nav" id="nav">
-					
+				
 				<ul>
 					<li id="home"><a href="index.php">home</a></li>
-					<!-- <li id="apiaccess"><a href="apiaccess.php">api access</a></li> -->
+					<li id="compare"><a href="compare.php">compare</a></li>
 					<li id="developers"><a href="developers.php">developers</a></li>
 					<li id="about"><a href="about.php">about</a></li>
+					<li id="contact"><a href="contact.php">contact</a><br></li>
 				</ul>
 				
 			</div>

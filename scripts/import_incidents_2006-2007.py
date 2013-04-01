@@ -56,7 +56,7 @@ def main(argv):
 				ccount = startcolumn
 
 				# add all of the counts with their respective incidenttypes
-				for i in range(0, len(incidnettypes)):
+				for i in range(0, len(incidenttypes)):
 
 					# split tuple
 					incidenttypeid,incidenttypename,weaponsrelated = incidenttypes[i]

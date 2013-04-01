@@ -2,7 +2,7 @@
 
 	$apiversion = "0.1";
 
-	require_once("./TimeTool.class.php");
+	require_once("./tools/TimeTool.class.php");
 
 	require_once("./tools/CountyTool.class.php");
 	require_once("./tools/County.class.php");
@@ -10,8 +10,8 @@
 	require_once("./tools/DistrictTool.class.php");
 	require_once("./tools/District.class.php");
 
-	require_once("./tools/EventTypeTool.class.php");
-	require_once("./tools/EventType.class.php");
+	require_once("./tools/IncidentTypeTool.class.php");
+	require_once("./tools/IncidentType.class.php");
 
 	require_once("./tools/GradeOrganizationTool.class.php");
 	require_once("./tools/GradeOrganization.class.php");

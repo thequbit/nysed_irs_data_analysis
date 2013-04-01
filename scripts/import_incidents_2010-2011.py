@@ -47,42 +47,42 @@ def main(argv):
 				# get school name
 				schoolid,schoolname,bedscode,enrollment,countyid,districtid,gradeorganizationid,needresourcecategoryid,schooltypeid = db.get_school_by_name(_schoolname)
 
-				# get all of the incidentss in the correct order from the db
-				incidentstypes = db.get_all_incidentstypes()
+				# get all of the incidenss in the correct order from the db
+				incidenttypes = db.get_all_incidenttypes()
 
-				#print "Processing {0} incidentstypes ...".format(len(incidentstypes))
+				#print "Processing {0} incidenttypes ...".format(len(incidenttypes))
 
 				# start at our column offset
 				ccount = startcolumn
 
-				# add all of the counts with their respective incidentstypes
-				for i in range(0, len(incidentstypes)):
+				# add all of the counts with their respective incidenttypes
+				for i in range(0, len(incidenttypes)):
 
 					# split tuple
-					incidentstypeid,incidentstypename,weaponsrelated = incidentstypes[i]
+					incidenttypeid,incidenttypename,weaponsrelated = incidenttypes[i]
 
-					#print "\tCreating incidents(s) for incidents type '{0}'".format(incidentstypename)
+					#print "\tCreating incident(s) for incident type '{0}'".format(incidenttypename)
 
 					# if weapons related, we need to add the next two columns, else just the 1
 					if weaponsrelated == 1:
 
-						#print "\tSetting Value '{0}' for weapon involved incidents type '{1}'".format(cells[ccount],incidentstypename)
+						#print "\tSetting Value '{0}' for weapon involved incident type '{1}'".format(cells[ccount],incidenttypename)
 
 						# add with the weapon 
-						db.create_incidents(cells[ccount], schoolyearid, 1, incidentstypeid, schoolid)
+						db.create_incident(cells[ccount], schoolyearid, 1, incidenttypeid, schoolid)
 						# inc to next cell
 						ccount += 1
 
-						#print "\tSetting Value '{0}' for no weapon involved incidents type '{1}'".format(cells[ccount],incidentstypename)
+						#print "\tSetting Value '{0}' for no weapon involved incident type '{1}'".format(cells[ccount],incidenttypename)
 
 						# add without the weapon
-						db.create_incidents(cells[ccount], schoolyearid, 0, incidentstypeid, schoolid)
+						db.create_incident(cells[ccount], schoolyearid, 0, incidenttypeid, schoolid)
 					else:
 
-						#print "\tSetting Value '{0}' for weapon-independant incidents type '{1}'".format(cells[ccount],incidentstypename)
+						#print "\tSetting Value '{0}' for weapon-independant incident type '{1}'".format(cells[ccount],incidenttypename)
 
 						# add just without the weapon
-						db.create_incidents(cells[ccount], schoolyearid, 0, incidentstypeid, schoolid)
+						db.create_incident(cells[ccount], schoolyearid, 0, incidenttypeid, schoolid)
 
 					# inc to next cell
 					ccount += 1
