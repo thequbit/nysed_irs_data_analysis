@@ -2,9 +2,83 @@
 
 	require_once("DatabaseTool.class.php");
 	require_once("SchoolHybrid.class.php");
+	require_once("School.class.php");
 
 	class SchoolTool
 	{
+		function GetSchoolCount()
+		{
+			dprint( "GetSchoolCount() Start." );
+		
+			try
+			{
+				$db = new DatabaseTool();
+
+				$query = 'select count(schoolid) as count from schools';
+				
+				$mysqli = $db->Connect();
+				$stmt = $mysqli->prepare($query);
+				$results = $db->Execute($stmt);
+			
+				$count = $results[0]['count'];
+			
+				$db->Close($mysqli, $stmt);
+			}
+			catch (Exception $e)
+			{
+				dprint( "Caught exception: " . $e->getMessage() );
+			}
+			
+			dprint("GetSchoolCount() Done.");
+			
+			return $count;
+		}
+	
+		function GetAllSchools()
+		{
+			dprint( "GetAllSchools() Start." );
+		
+			try
+			{
+				$db = new DatabaseTool();
+
+				$query = 'select schoolid, schoolname, bedscode, enrollment, countyid, districtid, gradeorganizationid, needresourcecategoryid, schooltypeid from schools';
+				
+				$mysqli = $db->Connect();
+				$stmt = $mysqli->prepare($query);
+				$results = $db->Execute($stmt);
+			
+				$schools = array();
+				foreach( $results as $row )
+				{
+					$school = new School();
+					
+					$school->schoolid 					= $row['schoolid'];
+					$school->schoolname 				= $row['schoolname'];
+					$school->bedscode 					= $row['bedscode'];
+					$school->enrollment 				= $row['enrollment'];
+					$school->countyid 					= $row['countyid'];
+					$school->districtid 				= $row['districtid'];
+					$school->gradeorganizationid 		= $row['gradeorganizationid'];
+					$school->needresourcecategoryid 	= $row['needresourcecategoryid'];
+					$school->schooltypeid				= $row['schooltypeid'];
+				
+					$schools[] = $school;
+				}
+				
+				$db->Close($mysqli, $stmt);
+			}
+			catch (Exception $e)
+			{
+				dprint( "Caught exception: " . $e->getMessage() );
+			}
+			
+			dprint("GetAllSchools() Done.");
+			
+			
+			return $schools;
+		}
+	
 		function GetAllHybridSchools()
 		{
 			dprint( "GetAllHybridSchools() Start." );
@@ -51,7 +125,7 @@
 				dprint( "Caught exception: " . $e->getMessage() );
 			}
 			
-			dprint("GetAllSchools() Done.");
+			dprint("GetAllHybridSchools() Done.");
 			
 			return $schools;
 		}

@@ -6,6 +6,34 @@
 	class CountyTool
 	{
 	
+		function GetCountyCount()
+		{
+			dprint( "GetCountyCount() Start." );
+		
+			try
+			{
+				$db = new DatabaseTool();
+
+				$query = 'select count(countyid) as count from counties';
+				
+				$mysqli = $db->Connect();
+				$stmt = $mysqli->prepare($query);
+				$results = $db->Execute($stmt);
+			
+				$count = $results[0]['count'];
+			
+				$db->Close($mysqli, $stmt);
+			}
+			catch (Exception $e)
+			{
+				dprint( "Caught exception: " . $e->getMessage() );
+			}
+			
+			dprint("GetCountyCount() Done.");
+			
+			return $count;
+		}
+	
 		function GetAllCounties()
 		{
 			dprint( "GetAllCounties() Start." );
