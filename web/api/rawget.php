@@ -2,6 +2,8 @@
 
 	$apiversion = "0.1";
 
+	require_once("./TimeTool.class.php");
+
 	require_once("./tools/CountyTool.class.php");
 	require_once("./tools/County.class.php");
 
@@ -32,6 +34,10 @@
 	// default error code set to success
 	$errorcode = 0;
 	$errortext = "Successful.";
+
+	$t = new TimeTool();
+	
+	$t->Mark();
 
 	// get the array of what the user wanted
 	switch($what)
@@ -78,12 +84,20 @@
 			$result = $tool->GetAllSchoolYears();
 			break;
 		
+		/*
 		case "school":
 			$type = "School";
 			$tool = new SchoolTool();
+			$result = $tool->GetAllSchools();
+			break;
+		
+		case "schoolhybrid":
+			$type = "School Hybrid";
+			$tool = new SchoolTool();
 			$result = $tool->GetAllHybridSchools();
 			break;
-			
+		*/
+		
 		case "":
 		default:
 			$type = "Invalid Type";
@@ -92,10 +106,15 @@
 			break;
 	}
 	
-	// json-a-fy the responce ... 
+	$t->Mark();
+	$getTime = $t->TimeTaken();
+	
+	// json-a-fy the results
 	$jsonResult = json_encode($result);
 	
 	// ... and send it
-	echo '{"apiversion":"' . $apiversion . '","type":"' . $type . '","errorcode":"' . $errorcode . '","errortext":"' . $errortext . '","results":' . $jsonResult . '}';
+	echo '{"apiversion":"' . $apiversion . '","querytime":"' . $getTime . '","type":"' . $type . '","errorcode":"' . $errorcode . '","errortext":"' . $errortext . '","results":' . $jsonResult . '}';
 
 ?>
+
+
