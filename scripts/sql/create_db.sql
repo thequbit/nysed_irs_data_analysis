@@ -1,5 +1,10 @@
 # create database, note: no permissions done here
-#create database nysed_irs;
+create database nysed_irs;
+
+# permissions
+grant usage on nysed_irs.* to nysed identified by .password123%%%.;
+grant all privileges on nysed_irs.* to nysed;
+
 use nysed_irs;
 
 # create counties table
@@ -52,10 +57,10 @@ schooltypeid int not null,
 foreign key (schooltypeid) references schooltypes(schooltypeid)
 );
 
-# create eventtypes table
-create table eventtypes(
-eventtypeid int not null auto_increment primary key,
-eventtypename text not null,
+# create incidenttype table
+create table incidenttype(
+incidenttypeid int not null auto_increment primary key,
+incidenttypename text not null,
 weaponrelated bool not null
 );
 
@@ -66,15 +71,16 @@ schoolyearstart int not null,
 schoolyearname text
 );
 
-# create events table with foreign key
-create table events(
-eventid int not null auto_increment primary key,
-eventcount int not null,
+# create vadirincidents table with foreign keys
+create table vadirincidents(
+vadirincidentid int not null auto_increment primary key,
+incidentcount int not null,
 schoolyearid int not null,
 foreign key (schoolyearid) references schoolyears(schoolyearid),
 withweapon bool not null,
-eventtypeid int not null,
-foreign key (eventtypeid) references eventtypes(eventtypeid),
+incidenttypeid int not null,
+foreign key (incidenttypeid) references incidenttypes(incidenttypeid),
 schoolid int not null,
 foreign key (schoolid) references schools(schoolid)
 );
+
